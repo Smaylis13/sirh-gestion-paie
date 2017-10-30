@@ -6,25 +6,25 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
 
 
-	<bean id="bulletin1" class="dev.paie.entite.BulletinSalaire">
+	<bean id="bulletin" class="dev.paie.entite.BulletinSalaire">
 		<property name="primeExceptionnelle" value="1000"></property>
-		<property name="remunerationEmploye" ref="employe1"></property>
+		<property name="remunerationEmploye" ref="employe"></property>
 	</bean>
 
-	<bean id="employe1" class="dev.paie.entite.RemunerationEmploye">
+	<bean id="employe" class="dev.paie.entite.RemunerationEmploye">
 		<property name="matricule" value="M01"></property>
-		<property name="entreprise" ref="entrprise1"></property>
-		<property name="profilRemuneration" ref="profilRemuneration1"></property>
-		<property name="grade" ref="grade1"></property>
+		<property name="entreprise" ref="entrprise"></property>
+		<property name="profilRemuneration" ref="profilRemuneration"></property>
+		<property name="grade" ref="grade"></property>
 	</bean>
 
-	<bean id="entrprise1" class="dev.paie.entite.Entreprise">
+	<bean id="entrprise" class="dev.paie.entite.Entreprise">
 		<property name="siret" value="80966785000022"></property>
 		<property name="denomination" value="Dev Entreprise"></property>
 		<property name="codeNaf" value="6202A"></property>
 	</bean>
 
-	<bean id="profilRemuneration1" class="dev.paie.entite.ProfilRemuneration">
+	<bean id="profilRemuneration" class="dev.paie.entite.ProfilRemuneration">
 		<property name="cotisationsImposables">
 			<util:list>
 				<ref bean="sp01"/>
@@ -51,10 +51,9 @@
 		</property>
 	</bean>
 	
-	<bean name="grade1" class="dev.paie.entite.Grade">
+	<bean name="grade" class="dev.paie.entite.Grade">
 		<property name="nbHeuresBase" value="151.67"></property>
 		<property name="tauxBase" value="11.0984"></property>
-		
 	</bean>
 	
 	
