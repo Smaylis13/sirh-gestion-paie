@@ -55,7 +55,7 @@ public class JeuxDeDonneesTest {
 				"EP28", "EP37")
 				.forEach(code -> assertThat(
 						cotisationsNonImposables.stream().filter(c -> c.getCode().equals(code)).findAny().isPresent())
-						.as("verification code ", code).isTrue());
+						.as("verification code "+ code).isTrue());
 	}
 
 	@Test
@@ -64,7 +64,7 @@ public class JeuxDeDonneesTest {
 				.getCotisationsImposables();
 		Stream.of("SP01", "SP02").forEach(code -> assertThat(
 				cotisationsImposables.stream().filter(c -> c.getCode().equals(code)).findAny().isPresent())
-				.as("verification code ", code).isTrue());
+				.as("verification code " + code).isTrue());
 	}
 
 	@Test
