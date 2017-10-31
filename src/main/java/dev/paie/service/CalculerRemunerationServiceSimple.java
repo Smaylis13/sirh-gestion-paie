@@ -32,7 +32,7 @@ public class CalculerRemunerationServiceSimple implements CalculerRemunerationSe
 		BigDecimal salaireBrutBG = new BigDecimal(0);
 		salaireBrutBG = grade.getNbHeuresBase().multiply(grade.getTauxBase()).add(bulletin.getPrimeExceptionnelle());
 		resultatCalculRemuneration.setSalaireBrut(salaireBrut);
-		
+		salaireBrutBG = new BigDecimal(paieUtils.formaterBigDecimal(salaireBrutBG));
 
 		List<Cotisation> list = bulletin.getRemunerationEmploye().getProfilRemuneration().getCotisationsNonImposables();
 		//SOMME(COTISATION_NON_IMPOSABLE.TAUX_SALARIAL*SALAIRE_BRUT)
