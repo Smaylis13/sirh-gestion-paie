@@ -6,7 +6,7 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
 
 
-	<bean id="bulletin" class="dev.paie.entite.BulletinSalaire">
+	<bean id="bulletin1" class="dev.paie.entite.BulletinSalaire">
 		<property name="primeExceptionnelle" value="1000"></property>
 		<property name="remunerationEmploye" ref="employe"></property>
 	</bean>
