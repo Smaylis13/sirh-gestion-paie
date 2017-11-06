@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class RemunerationEmploye {
@@ -14,11 +15,12 @@ public class RemunerationEmploye {
 	private Integer id;
 	@Column
 	private String matricule;
-	@Column
+
+	@ManyToOne
 	private Entreprise entreprise;
-	@Column
+	@ManyToOne
 	private ProfilRemuneration profilRemuneration;
-	@Column
+	@ManyToOne
 	private Grade grade;
 	
 	public RemunerationEmploye() {

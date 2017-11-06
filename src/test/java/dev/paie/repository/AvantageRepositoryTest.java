@@ -13,8 +13,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import dev.paie.config.ServicesConfig;
 import dev.paie.entite.Avantage;
+import dev.paie.service.JeuxDeDonneesConfig;
+import dev.paie.spring.JpaConfig;
+import dev.paie.util.PaieUtils;
 
-@ContextConfiguration(classes = { ServicesConfig.class })
+@ContextConfiguration(classes = { ServicesConfig.class,AvantageRepository.class, PaieUtils.class, JeuxDeDonneesConfig.class, JpaConfig.class})
 @RunWith(SpringRunner.class)
 public class AvantageRepositoryTest {
 

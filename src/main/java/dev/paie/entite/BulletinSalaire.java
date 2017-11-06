@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class BulletinSalaire {
@@ -14,9 +15,9 @@ public class BulletinSalaire {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	@Column
+	@ManyToOne
 	private RemunerationEmploye remunerationEmploye;
-	@Column
+	@ManyToOne
 	private Periode periode;
 	@Column
 	private BigDecimal primeExceptionnelle;
