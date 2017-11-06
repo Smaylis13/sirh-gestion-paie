@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 @Configuration
-@ComponentScan({"dev.paie.service","dev.paie.entite","dev.paie.util"})
+@ComponentScan({"dev.paie.service","dev.paie.entite","dev.paie.util","dev.paie.listener"})
 public class DataSourceMySQLConfig {
 
 	@Bean

@@ -25,7 +25,7 @@ public class CotisationServiceJpa implements CotisationService{
 
 	@Override
 	public void mettreAJour(Cotisation cotisation) {
-		//em.persist(cotisation);
+		em.persist(cotisation);
 		
 	}
 
