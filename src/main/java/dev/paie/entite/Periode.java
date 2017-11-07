@@ -1,5 +1,6 @@
 package dev.paie.entite;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -11,6 +12,13 @@ import javax.persistence.Id;
 @Entity
 public class Periode {
 	
+	@Override
+	public String toString() {
+		//SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+		//return  simpleDateFormat.format(dateDebut) + " - " + simpleDateFormat.format(dateFin) ;
+		return dateDebut + " - " + dateFin;
+	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
@@ -20,6 +28,9 @@ public class Periode {
 	private LocalDate dateDebut;
 	@Column
 	private LocalDate dateFin;
+	
+	//@OneToMany
+	//List<Bull>
 	
 	public Periode(Integer id, LocalDate dateDebut, LocalDate dateFin) {
 		super();

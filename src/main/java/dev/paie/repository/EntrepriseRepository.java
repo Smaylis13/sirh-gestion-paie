@@ -7,4 +7,6 @@ import dev.paie.entite.Entreprise;
 
 public interface EntrepriseRepository extends JpaRepository<Entreprise, Integer> {
 
+	public Entreprise findByDenomination(String denomination);
+
 }

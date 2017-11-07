@@ -56,22 +56,10 @@ public class InitialiserDonneesServiceDev implements InitialiserDonneesService {
 	public void initialiser() {
 		ApplicationContext context = new ClassPathXmlApplicationContext(new String[] { "entreprises.xml", "grades.xml","profils-remuneration.xml", "cotisations-imposables.xml", "cotisations-non-imposables.xml" });
 
-		// context.getBeansOfType(Grade.class).entrySet().stream().map(g ->
-		// gradeRepository.save(g));
+
 		Stream.of(Cotisation.class, Entreprise.class, Grade.class, ProfilRemuneration.class).forEach(
 				classe -> context.getBeansOfType(classe).values().stream().forEach(object -> em.persist(object)));
-		/*
-		 * for (String id : context.getBeanDefinitionNames()) { if
-		 * (id.contains("grade")){ Grade grade = (Grade) context.getBean(id);
-		 * gradeRepository.save(grade); }else if (id.contains("profil")){
-		 * ProfilRemuneration profilRemuneration = (ProfilRemuneration)
-		 * context.getBean(id);
-		 * profilRemunerationRepository.save(profilRemuneration); }else if
-		 * (id.contains("entreprise")){ Entreprise entreprise = (Entreprise)
-		 * context.getBean(id); entrepriseRepository.save(entreprise);
-		 * 
-		 * } }
-		 */
+
 		for (int i = 1; i <= 12; i++) {
 			LocalDate initial = LocalDate.of(2017, i, 13);
 			periodeRepository

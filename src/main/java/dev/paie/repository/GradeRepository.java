@@ -6,5 +6,7 @@ import dev.paie.entite.Avantage;
 import dev.paie.entite.Grade;
 
 public interface GradeRepository extends JpaRepository<Grade, Integer>{
+	
+	public Grade findByCode(String code);
 
 }
