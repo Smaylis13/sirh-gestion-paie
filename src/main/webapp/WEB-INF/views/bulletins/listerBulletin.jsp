@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="dev.paie.entite.ResultatCalculRemuneration" %>
+<%@ page import="java.text.SimpleDateFormat"%>
+<%@ page import="dev.paie.entite.ResultatCalculRemuneration"%>
 <%@ page import="dev.paie.service.CalculerRemunerationService"%>"
 <!DOCTYPE html>
 <html lang="fr">
@@ -70,10 +70,17 @@
 						<td>${bulletin.dateCreation}</td>
 						<td>${bulletin.periode}</td>
 						<td>${bulletin.remunerationEmploye.matricule}</td>
-						<td>${bulletin.getSalaireBrut()}</td>
-						<td>...</td>
-						<td>...</td>
-						<td>...</td>
+
+						<c:forEach items="${resultats}" var="resultat">
+								<c:if test="${resultat.key==bulletin}">
+
+									<td>${resultat.value.salaireBrut}</td>
+									<td>${resultat.value.netImposable}</td>
+									<td>${resultat.value.netAPayer}</td>
+
+								</c:if>
+							</c:forEach>
+
 					</tr>
 				</c:forEach>
 			</tbody>

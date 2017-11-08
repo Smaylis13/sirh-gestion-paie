@@ -4,10 +4,13 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,6 +52,7 @@ public class BulletinController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, path = "/creer")
+	@Transactional
 	public ModelAndView creerBulletin(@RequestParam("matricule") String pMatricule,
 			@RequestParam("prime")String pPrime,@RequestParam("periode") String pPeriode){
 		ModelAndView mv = new ModelAndView();
@@ -63,30 +67,36 @@ public class BulletinController {
 		bulletinSalaire.setDateCreation(new Timestamp(System.currentTimeMillis()));
 		bulletinSalaireRepository.save(bulletinSalaire);
 		List<BulletinSalaire> bulletinSalaires = bulletinSalaireRepository.findAll();
-		
+		mv.addObject("bulletinSalaires", bulletinSalaires );
+
 		//calcul des resulatas
-		List<ResultatCalculRemuneration> resultats = new ArrayList<>();
+		Map<BulletinSalaire,ResultatCalculRemuneration> resultats = new HashMap<>();
 		
-		bulletinSalaires.stream().forEach(bul -> resultats.add(calculerRemunerationService.calculer(bul)));
-		mv.addObject("bulletins", bulletinSalaires );
+		
+		
+		bulletinSalaires.forEach(bul -> resultats.put(bul,calculerRemunerationService.calculer(bul)));
 		mv.addObject("resultats", resultats );
 
 		
 		mv.setViewName("bulletins/listerBulletin");
+		//
+		
+		
+		//
 		return mv;
 	}
 
 	@RequestMapping(method = RequestMethod.GET, path = "/lister")
+	@Transactional
 	public ModelAndView listerBulletin() {
 		ModelAndView mv = new ModelAndView();
 		// les bulletins de salaire
 		List<BulletinSalaire> bulletinSalaires = bulletinSalaireRepository.findAll();
-		mv.addObject("bulletins", bulletinSalaires );
 		
 		//calcul des resulatas
-		List<ResultatCalculRemuneration> resultats = new ArrayList<>();
+		Map<Integer,ResultatCalculRemuneration> resultats = new HashMap<>();
 		
-		bulletinSalaires.stream().forEach(bul -> resultats.add(calculerRemunerationService.calculer(bul)));
+		bulletinSalaires.stream().forEach(bul -> resultats.put(bul.getId(),calculerRemunerationService.calculer(bul)));
 		
 		mv.addObject("bulletins", bulletinSalaires );
 		mv.addObject("resultats", resultats );

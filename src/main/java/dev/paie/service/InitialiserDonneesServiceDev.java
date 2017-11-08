@@ -53,8 +53,9 @@ public class InitialiserDonneesServiceDev implements InitialiserDonneesService {
 	 */
 
 	@Override
+	@Transactional
 	public void initialiser() {
-		ApplicationContext context = new ClassPathXmlApplicationContext(new String[] { "entreprises.xml", "grades.xml","profils-remuneration.xml", "cotisations-imposables.xml", "cotisations-non-imposables.xml" });
+		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[] { "entreprises.xml", "grades.xml","profils-remuneration.xml", "cotisations-imposables.xml", "cotisations-non-imposables.xml" });
 
 
 		Stream.of(Cotisation.class, Entreprise.class, Grade.class, ProfilRemuneration.class).forEach(
@@ -65,6 +66,8 @@ public class InitialiserDonneesServiceDev implements InitialiserDonneesService {
 			periodeRepository
 					.save(new Periode(i, initial.withDayOfMonth(1), initial.withDayOfMonth(initial.lengthOfMonth())));
 		}
+
+		context.close();
 
 	}
 
