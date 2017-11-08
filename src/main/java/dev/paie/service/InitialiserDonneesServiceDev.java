@@ -15,6 +15,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.test.context.ContextConfiguration;
@@ -27,6 +28,8 @@ import dev.paie.entite.Entreprise;
 import dev.paie.entite.Grade;
 import dev.paie.entite.Periode;
 import dev.paie.entite.ProfilRemuneration;
+import dev.paie.entite.Utilisateur;
+import dev.paie.entite.Utilisateur.ROLES;
 import dev.paie.repository.EntrepriseRepository;
 import dev.paie.repository.GradeRepository;
 import dev.paie.repository.PeriodeRepository;
@@ -38,9 +41,11 @@ public class InitialiserDonneesServiceDev implements InitialiserDonneesService {
 
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	@Autowired
 	private PeriodeRepository periodeRepository;
+	
+	@Autowired private PasswordEncoder passwordEncoder;
 	/*
 	 * @Autowired private EntrepriseRepository entrepriseRepository;
 	 * 
@@ -66,6 +71,22 @@ public class InitialiserDonneesServiceDev implements InitialiserDonneesService {
 			periodeRepository
 					.save(new Periode(i, initial.withDayOfMonth(1), initial.withDayOfMonth(initial.lengthOfMonth())));
 		}
+		
+
+		
+		Utilisateur u1 = new Utilisateur()
+						.setEstActif(true)
+						.setNomUtilisateur("ismaelAdmin")
+						.setRole(ROLES.ROLE_ADMINISTRATEUR)
+						.setMotDePasse(this.passwordEncoder.encode("MonSuperM2P"));
+		em.persist(u1);
+		
+		Utilisateur u2 = new Utilisateur()
+				.setEstActif(true)
+				.setNomUtilisateur("ismaelUser")
+				.setRole(ROLES.ROLE_UTILISATEUR)
+				.setMotDePasse(this.passwordEncoder.encode("MyPassword"));
+		em.persist(u2);
 
 		context.close();
 

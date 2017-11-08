@@ -1,0 +1,77 @@
+package dev.paie.entite;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Utilisateur {
+	public enum ROLES {
+		ROLE_ADMINISTRATEUR, ROLE_UTILISATEUR
+	}
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	@Column
+	private String nomUtilisateur;
+	@Column
+	private String motDePasse;
+	@Column
+	private Boolean estActif;
+	@Enumerated(EnumType.STRING)
+	private ROLES role;
+
+	public Utilisateur() {
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public String getNomUtilisateur() {
+		return nomUtilisateur;
+	}
+
+	public String getMotDePasse() {
+		return motDePasse;
+	}
+
+	public Boolean getEstActif() {
+		return estActif;
+	}
+
+	public ROLES getRole() {
+		return role;
+	}
+
+	public Utilisateur setId(Integer id) {
+		this.id = id;
+		return this;
+	}
+
+	public Utilisateur setNomUtilisateur(String nomUtilisateur) {
+		this.nomUtilisateur = nomUtilisateur;
+		return this;
+	}
+
+	public Utilisateur setMotDePasse(String motDePasse) {
+		this.motDePasse = motDePasse;
+		return this;
+	}
+
+	public Utilisateur setEstActif(Boolean estActif) {
+		this.estActif = estActif;
+		return this;
+	}
+
+	public Utilisateur setRole(ROLES role) {
+		this.role = role;
+		return this;
+	}
+
+}

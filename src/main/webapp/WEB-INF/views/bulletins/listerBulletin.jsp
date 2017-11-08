@@ -80,7 +80,7 @@
 
 								</c:if>
 							</c:forEach>
-
+							<td><a href="<c:url value="/mvc/bulletins/visualiser/${bulletin.id}"/>">Visualiser</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

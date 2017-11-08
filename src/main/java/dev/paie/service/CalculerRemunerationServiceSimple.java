@@ -67,8 +67,8 @@ public class CalculerRemunerationServiceSimple implements CalculerRemunerationSe
 				sumCotisImposable = sumCotisImposable.add(c.getTauxSalarial().multiply(salaireBrutBG));
 		}
 		BigDecimal netAPayer = net_imposable.add(sumCotisImposable.negate());
-		System.out.println(net_imposable);
-		System.out.println(sumCotisImposable);
+
+
 		resultatCalculRemuneration.setNetAPayer(paieUtils.formaterBigDecimal(netAPayer));
 		return resultatCalculRemuneration;
 	}

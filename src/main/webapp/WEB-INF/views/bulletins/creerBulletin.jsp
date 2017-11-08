@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -52,7 +55,7 @@
 					<select class="form-control" name="periode">
 						<option>Veuillez choisir la période</option>
 						<c:forEach var="periode" items="${periodes}">
-							<option>${periode.dateDebut} - ${periode.dateFin}</option>
+							<option>${periode.dateDebut}- ${periode.dateFin}</option>
 						</c:forEach>
 
 					</select>
@@ -87,6 +90,7 @@
 					</button>
 				</div>
 			</div>
+			<sec:csrfInput />
 		</form>
 
 	</div>
